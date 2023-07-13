@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5150EEFA-EC36-4ECA-9764-46028CFDBD18}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Palletizer</RootNamespace>
+    <AssemblyName>Palletizer</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EasyModbus, Version=5.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EasyModbusTCP.5.6.0\lib\net40\EasyModbus.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClassUsed\Accounts.cs" />
+    <Compile Include="ClassUsed\ListAccounts.cs" />
+    <Compile Include="Screen Main Form\Connect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screen Main Form\Connect.Designer.cs">
+      <DependentUpon>Connect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AccessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccessForm.Designer.cs">
+      <DependentUpon>AccessForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClassUsed\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screen Main Form\Control.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screen Main Form\Control.Designer.cs">
+      <DependentUpon>Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screen Main Form\Setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screen Main Form\Setting.Designer.cs">
+      <DependentUpon>Setting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SignUpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SignUpForm.Designer.cs">
+      <DependentUpon>SignUpForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Screen Main Form\Connect.resx">
+      <DependentUpon>Connect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AccessForm.resx">
+      <DependentUpon>AccessForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Screen Main Form\Control.resx">
+      <DependentUpon>Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screen Main Form\Setting.resx">
+      <DependentUpon>Setting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SignUpForm.resx">
+      <DependentUpon>SignUpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-male-user.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-male-user1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-male-user-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-male-female-user-group-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-user-group-woman-man-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-sign-out-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-sign-out-34.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-sign-out-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-sign-out-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-sign-out-10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\screenshot_1688656300.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-connect-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-slave-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-parameter-22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-loading1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\277570972_2098145290344231_5187742764010065011_n %282%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\277570972_2098145290344231_5187742764010065011_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-up-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-left-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-down-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-right-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-pallet-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-box-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-box-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-pallet-100B&amp;W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\screenshot_1689127909.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
