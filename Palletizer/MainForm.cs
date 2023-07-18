@@ -18,7 +18,7 @@ namespace Palletizer
         public MainForm()
         {
 
-            InitializeComponent();
+            InitializeComponent();            
             AccessForm dng1access = new AccessForm();
             toolStripTBUser.Text = dng1access.user;
 
@@ -42,24 +42,7 @@ namespace Palletizer
                 mainBranchForm.Show();
             }
         }
-        //        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        //{
-        //    if (isExit)
-        //    {
-        //        if (MessageBox.Show("Do you want exit Palletizer ?", "Waring", MessageBoxButtons.YesNo) != DialogResult.Yes)
-        //        {
-        //            e.Cancel = true;
-        //        }
-        //    }
-        //}
-        //private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-        //{
-        //    if (isExit)
-        //    {
-        //        Application.Exit();
-        //    }
-        //}
-
+        
         private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AccessForm dngAccses = new AccessForm();
