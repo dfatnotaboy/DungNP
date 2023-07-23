@@ -56,6 +56,7 @@
     <Compile Include="ClassUsed\Box.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ClassUsed\boxInFor.cs" />
     <Compile Include="ClassUsed\ListAccounts.cs" />
     <Compile Include="Screen Main Form\Connect.cs">
       <SubType>Form</SubType>

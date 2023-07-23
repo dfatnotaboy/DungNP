@@ -1,48 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Windows.Forms;
 
 namespace Palletizer.ClassUsed
 {
     public class Box : Panel
     {
-        private int a;
-        public int A { get => a; set => a = value; }
-
-        private int b;
-        public int B { get => b; set => b = value; }
-
         private Button btnRotary;
         private Button btnClose;
         private Label lblbox;
         private bool isSwapped;
-        int aaa;
-        int bbb;
-        public int ccc;
-        public int ddd;
-        Control control=new Control();
         private bool isDragging = false;
         private int mouseOffsetX;
         private int mouseOffsetY;
-        public List<Box> listBoxs = new List<Box>();
-        
-        public Box(int Aa, int Bb, string c)
+        private Point limitUpperBound;
+        private Point limitLowerBound;
+        private int ii = 0;
+        private int iii = 0;
+        private Panel pnl;
+        public List<Panel> listBoxCoordinate = new List<Panel>();
+        Control control=new Control();
+
+
+        public Box(int Aa, int Bb, string c, Point upperBound, Point lowerBound, Panel pnlWork, int total)
+       
+
         {
-
+            
+            this.pnl= pnlWork;
+            limitUpperBound = upperBound;
+            limitLowerBound = lowerBound;
             isSwapped = true;
-            this.A = aaa = Aa;
-            this.B = bbb = Bb;
-
             this.Size = new Size(Aa, Bb);
             this.BackColor = Color.FromArgb(153, 180, 209);
             this.Name = "box" + c;
             this.MouseDown += Box_MouseDown;
             this.MouseUp += Box_MouseUp;
             this.MouseMove += Box_MouseMove;
+            iii = total;
+
 
             lblbox = new Label();
             lblbox.Text = "box" + c;
@@ -60,38 +58,32 @@ namespace Palletizer.ClassUsed
             btnRotary = new Button();
             btnRotary.Text = "R";
             btnRotary.Size = new System.Drawing.Size(30, 20);
-            btnRotary.Location = new Point(0,40);
+            btnRotary.Location = new Point(0, 40);
             btnRotary.Click += new EventHandler(btnRotary_Click);
             this.Controls.Add(btnRotary);
 
+            listBoxCoordinate.Add(this);
+            foreach (Panel locatin in listBoxCoordinate)
+            {
 
+            }
         }
+
 
         private void Box_MouseMove(object sender, MouseEventArgs e)
         {
             if (isDragging)
             {
-                
+
                 Box box1 = (Box)sender;
                 // Lấy tọa độ hiện tại của chuột trên Form
                 int mouseX = e.X + box1.Left - mouseOffsetX;
                 int mouseY = e.Y + box1.Top - mouseOffsetY;
-
-                if (mouseX<0)
-                {
-                    mouseX = 0;
-                }
-                
-                if (mouseY<0)
-                {
-                    mouseY = 0;
-                }
-                
-                // Di chuyển Label tới vị trí mới
+                mouseX = Math.Max(limitLowerBound.X, Math.Min(mouseX, limitUpperBound.X - Width));
+                mouseY = Math.Max(limitLowerBound.Y, Math.Min(mouseY, limitUpperBound.Y - Height));
                 box1.Left = mouseX;
                 box1.Top = mouseY;
-                ccc = mouseX;
-                ddd= mouseY;
+                locationMove(new Point(Left, Top));
             }
         }
 
@@ -116,7 +108,7 @@ namespace Palletizer.ClassUsed
 
         private void btnRotary_Click(object sender, EventArgs e)
         {
-            this.Location = new Point(this.Location.Y, this.ClientSize.Width - this.Width - this.Location.X);
+            this.Location = new Point(this.Location.X, this.Location.Y);
             this.Size = new Size(this.Height, this.Width);
         }
         private void btnClose_Click(object sender, EventArgs e)
@@ -124,10 +116,33 @@ namespace Palletizer.ClassUsed
             Control control = new Control();
             this.Parent.Controls.Remove(this);
             Box boxs = (sender as Button).Parent as Box;
+            ii = boxs.TabIndex;
             control.Controls.Remove(boxs);
-            listBoxs.Remove(boxs);
+            UpdateBoxOrderText();
 
-          
+        }
+        private void locationMove(Point location)
+        {
+            PanelMoved?.Invoke(this, location);
+        }
+        public event EventHandler<Point> PanelMoved;
+        private void UpdateBoxOrderText()
+        {
+            //if (ii<iii)
+           // {
+            // Duyệt qua danh sách các panel con trong mainPanel.Controls
+            for (int i = ii; i <= pnl.Controls.Count ; i++)
+            {
+                Panel panel = pnl.Controls[i] as Panel;
+                if (panel != null)
+                {
+                    // Cập nhật lại text thứ tự cho panel con
+                    int order = i - 1;
+                    panel.Text = "box " + order;
+                }
+            }
+
+            //}
         }
 
     }
